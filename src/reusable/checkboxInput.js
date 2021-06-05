@@ -3,12 +3,12 @@ import React from 'react';
 
 import { useForm, Controller } from 'react-hook-form';
 
-const CheckBoxInput = ({ value, control }) => {
+const CheckBoxInput  = React.forwardRef(({ onChange, onBlur, name, label, placeholder, type, control, register, required ,value, }, ref) => {
 	return (
 		<div style={{ display: 'flex', justifyContent: 'space-around' }}>
 			<Controller
 				render={({ field }) => (
-					<CInput style={{ width: '40px', marginRight: '30px' }} col md="2" type="checkbox" {...field} />
+					<CInput style={{ width: '40px', marginRight: '30px' }} col md="2" type="checkbox" {...field}  />
 				)}
 				control={control}
 				defaultValue={false}
@@ -16,13 +16,18 @@ const CheckBoxInput = ({ value, control }) => {
 			/>
 
 			<Controller
-				render={({ field }) => <CInput col md="4" type="text" {...field} />}
+				render={({ field }) => <CInput placeholder= {placeholder}  {...field} 
+                
+                />}
+                
 				name={`${value}-input`}
 				defaultValue=" "
+                type="text" 
 				control={control}
+                
 			/>
 		</div>
 	);
-};
+});
 
 export default CheckBoxInput;

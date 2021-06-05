@@ -30,7 +30,7 @@ import SelectMultiple from './../../reusable/SelectMultiple';
 import TextArea from './../../reusable/TextArea';
 import InputFile from './../../reusable/InputFile';
 
-const OnePyq = ({ control, register }) => {
+const OneMockQuestion = ({ control, register }) => {
 	const [ collapse, setCollapse ] = useState(true);
 
 	const toggle = (e) => {
@@ -40,7 +40,7 @@ const OnePyq = ({ control, register }) => {
 
 	const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
 		control,
-		name: 'ExtraPyqQueston'
+		name: 'ExtraMockQuestion'
 	});
 
 	const handdleAppend = () => {
@@ -51,11 +51,11 @@ const OnePyq = ({ control, register }) => {
 		<React.Fragment>
 			{fields.map((field, index) => {
 				return (
-					<CRow key={field.id}>
+					<CRow key={field.id} style={{ padding: '0px' }} >
 						<CCol xs="12" md="11">
 							<CCard style={{ backgroundColor: '#fff', border: 'none' }}>
-								<CCardHeader style={{ padding: '0px' }}>
-									<h1 style={{ display: 'inline', paddingLeft: '0px' }}>Add PYQ </h1>
+								<CCardHeader style={{ padding: '0px',marginBottom: '20px'}}>
+									<h1 style={{ display: 'inline', paddingLeft: '0px' }}>Add Mock Question </h1>
 									<ExpandMoreIcon onClick={toggle} />
 								</CCardHeader>
 								<CCollapse show={collapse}>
@@ -66,7 +66,7 @@ const OnePyq = ({ control, register }) => {
 											</CCol>
 
 											<TextArea
-												name={`ExtraPyqQueston[${index}].QuestionTitle`}
+												name={`ExtraMockQuestion[${index}].QuestionTitle`}
 												label="Question Title"
 												control={control}
 												placeholder="Question Title"
@@ -77,60 +77,44 @@ const OnePyq = ({ control, register }) => {
 												</CCol>
 												<CCol xs="12" md="6">
 													<CheckBoxInput
-														value={`ExtraPyqQueston[${index}].a`}
+														value={`ExtraMockQuestion[${index}].a`}
 														control={control}
 													/>
 													<CheckBoxInput
-														value={`ExtraPyqQueston[${index}].b`}
+														value={`ExtraMockQuestion[${index}].b`}
 														control={control}
 													/>
 													<CheckBoxInput
-														value={`ExtraPyqQueston[${index}].c`}
+														value={`ExtraMockQuestion[${index}].c`}
 														control={control}
 													/>
 													<CheckBoxInput
-														value={`ExtraPyqQueston[${index}].d`}
+														value={`ExtraMockQuestion[${index}].d`}
 														control={control}
 													/>
 												</CCol>
 											</CFormGroup>
 											<TextArea
-												name={`ExtraPyqQueston[${index}].AdditionalNotes`}
+												name={`ExtraMockQuestion[${index}].AdditionalNotes`}
 												label="Additiional Notes"
 												control={control}
 												placeholder="Additonal notes"
 											/>
 											<InputFile
 												register={register}
-												name={`ExtraPyqQueston[${index}].PyqQuestionImage`}
+												name={`ExtraMockQuestion[${index}].MockQuestionImage`}
 												label="Question Image (optional)"
 											/>
 											<CRow>
 												<CCol>
-													<CButton color="success" onClick={() => remove(index)}>
+													<CButton color="danger" onClick={() => remove(index)}>
 														{' '}
 														Delete
 													</CButton>
 												</CCol>
 											</CRow>
-											{/* <CCol>
-													<CButton
-														type="submit"
-														size="sm"
-														color="success"
-														className="mr-2 mb-5"
-													>
-														<CIcon name="cil-scrubber" /> Save Changes
-													</CButton>
-													<CButton
-														type="reset"
-														size="sm"
-														color="danger"
-														className="mr-2 mb-5"
-													>
-														<CIcon name="cil-ban" /> Cancel
-													</CButton>
-												</CCol> */}
+
+											
 										</CCardBody>
 									</CRow>
 								</CCollapse>
@@ -139,16 +123,18 @@ const OnePyq = ({ control, register }) => {
 					</CRow>
 				);
 			})}
+        
 			<CRow>
-				<CCol className="mb-5" md="6" style={{padding: '0px' }}>
-					<CButton className="mr-3" color="success" onClick={handdleAppend}>
+				<CCol className="mb-5" md="6" style={{padding: '0px'}}>
+					<CButton className="" color="success" onClick={handdleAppend}>
 						{' '}
 						Add More
 					</CButton>
 				</CCol>
 			</CRow>
+         
 		</React.Fragment>
 	);
 };
 
-export default OnePyq;
+export default OneMockQuestion;

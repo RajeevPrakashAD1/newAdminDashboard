@@ -25,7 +25,7 @@ import { CIcon } from '@coreui/icons-react';
 
 import InputFile from './../../reusable/InputFile';
 import { Controller } from 'react-hook-form';
-import { CheckBox } from '@material-ui/icons';
+import CheckBox  from '@material-ui/icons';
 
 const AddFaculty = () => {
 	const [ collapse, setCollapse ] = useState(true);
@@ -65,7 +65,11 @@ const AddFaculty = () => {
 											required
 											control={control}
 										/>
-										<InputFile name="FacultyImage" control=        {control} />
+										<InputFile
+											name="FacultyImage"
+											register={register}
+											label="Faculty Image (Optional)"
+										/>
 										<InputForm
 											placeholder="Qualification"
 											type="text"

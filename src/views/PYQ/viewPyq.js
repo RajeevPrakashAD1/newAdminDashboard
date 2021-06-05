@@ -15,8 +15,8 @@ import {
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 
-import FacultyImage from './facultyimage';
-function ViewFaculty() {
+
+export default function ViewPyqList() {
 	const [ faculties ] = useState([
 		{
 			_id: '1',
@@ -79,13 +79,13 @@ function ViewFaculty() {
 	]);
 
 	const fields = [
-		{ key: '_id' },
-		{ key: 'name', _style: { width: '10%' } },
+		{ key: 's.no' },
+		{ key: 'category', _style: { width: '10%' } },
 
-		{ key: 'image', filter: false, sorter: false, _style: { width: '20%' } },
-		{ key: 'basicInfo', _style: { width: '30%' } },
-		{ key: 'socialMedia', filter: false, sorter: false, _style: { width: '30%' } },
-		{ key: 'action', filter: false, sorter: false }
+		{ key: 'question', filter: false, sorter: false, _style: { width: '20%' } },
+		{ key: 'answer', _style: { width: '30%' } },
+		{ key: 'correct answer', filter: false, sorter: false, _style: { width: '30%' } },
+		{ key: 'image', filter: false, sorter: false }
 	];
 
 	const cardStyle = {
@@ -97,7 +97,7 @@ function ViewFaculty() {
 		<React.Fragment>
 			<CCard>
 				<CCardHeader>
-					 View Faculty
+					 View Pyq
 				</CCardHeader>
 				<CCardBody>
 					<CDataTable
@@ -112,59 +112,6 @@ function ViewFaculty() {
 						border
 						outlined
 						pagination
-						scopedSlots={{
-							name: (item) => (
-								<td>
-									<h6> {item.name} </h6>
-								</td>
-							),
-
-							image: (item2) => (
-								<td>
-									{' '}
-									<FacultyImage />{' '}
-								</td>
-							),
-
-							basicInfo: (item) => (
-								<CCard style={cardStyle}>
-									<CCardBody>
-										<CCardTitle>Skills</CCardTitle>
-										<CCardSubtitle>Subtitle.</CCardSubtitle>
-										<CCardTitle>Skills</CCardTitle>
-										<CCardSubtitle>Subtitle.</CCardSubtitle>
-									</CCardBody>
-								</CCard>
-							),
-
-							action: (item) => (
-								<CContainer>
-									<CButton>
-										{' '}
-										<DeleteIcon color="danger" />
-									</CButton>
-									<CButton>
-										{' '}
-										<CreateIcon color="green" />{' '}
-									</CButton>
-									<CButton color="success"> Active</CButton>
-								</CContainer>
-							),
-							socialMedia: (item) => (
-								<td>
-									<CCard style={cardStyle}>
-										<CCardBody>
-											<CCardTitle>Skills</CCardTitle>
-											<CCardSubtitle>Subtitle.</CCardSubtitle>
-											<CCardTitle>Skills</CCardTitle>
-											<CCardSubtitle>Subtitle.</CCardSubtitle>
-											<CCardTitle>Skills</CCardTitle>
-											<CCardSubtitle>Subtitle.</CCardSubtitle>
-										</CCardBody>
-									</CCard>
-								</td>
-							)
-						}}
 					/>
 				</CCardBody>
 			</CCard>
@@ -172,4 +119,4 @@ function ViewFaculty() {
 	);
 }
 
-export default ViewFaculty;
+

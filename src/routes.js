@@ -63,6 +63,10 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
 const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
 const ViewEnquiry  = React.lazy(() => import( './views/enquiry/viewEnquiry'));
+const ViewPyqList = React.lazy(() => import( './views/PYQ/viewPyq'));
+const AddMockTestQuestion = React.lazy(() => import( './views/MockTest/AddMockTestQuestion'));
+
+
 
 
 
@@ -78,8 +82,9 @@ const routes = [
 
    {path:"/mock-test/add-category",name:"Add Category",component:AddCategory },
    {path:"/mock-test/view-category-list",name:"Add Category",component:ViewCategoryList },
-   {path:"/mock-test/add-mock-test-qustions",name:"Add Category",component:AddCategory },
-   {path:"/mock-test/add-category",name:"Add Category",component:AddCategory },
+
+   {path:"/mock-test/add-mock-test-question", name:"Add Mock Question",component:AddMockTestQuestion },
+   
 
 
 
@@ -88,8 +93,11 @@ const routes = [
    {path:'/faculty/addFaculty', name:" All Faculty", component:AddFaculty},
    
    {path:'/pyq/add-pyq', name:" Add PYQ", component:AddPyqForm},
+   {path:'/pyq/view-pyq-list', name:" Add PYQ List", component:ViewPyqList},
 
    {path:'/enquiry/viewEnquiry', name:" View Enquiry", component:ViewEnquiry},
+
+   
 
 
 

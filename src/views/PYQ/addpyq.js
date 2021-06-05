@@ -21,9 +21,11 @@ import { useForm, Controller } from 'react-hook-form';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import bsCustomFileInput from 'bs-custom-file-input'
+
 import InputForm from './../../reusable/inputTaking';
-import { CIcon } from '@coreui/icons-react';
+import CIcon from '@coreui/icons-react';
 
 import CheckBoxInput from './../../reusable/checkboxInput';
 import SelectMultiple from './../../reusable/SelectMultiple';
@@ -43,6 +45,18 @@ const AddPyq = () => {
 	const onSubmit = (data) => {
 		console.log(data);
 	};
+
+    const [file,setfile]=useState();
+
+    useEffect(() => {
+   
+        bsCustomFileInput.init();
+      
+      return () => {
+        
+      }
+    }, [])
+
 	return (
 		<React.Fragment>
 			<CRow>
@@ -61,27 +75,40 @@ const AddPyq = () => {
 										<CCol sm="12" className="mb-3" style={{ paddingLeft: '0px' }}>
 											<h2> Question 1 </h2>
 										</CCol>
-
-										<TextArea name="QuestionTitle" label="Question Title" control={control} />
+                                    
+										<TextArea
+											name="QuestionTitle"
+											label="Question Title"
+											placeholder="Question title"
+											control={control}
+										/>
 
 										<CFormGroup row>
 											<CCol md="3">
 												<CLabel>Answers</CLabel>
 											</CCol>
 											<CCol xs="12" md="6">
-												<CheckBoxInput value="a" control={control} />
-												<CheckBoxInput value="b" control={control} />
-												<CheckBoxInput value="c" control={control} />
-												<CheckBoxInput value="d" control={control} />
+												<CheckBoxInput value="a" control={control} placeholder="AnswerA" />
+												<CheckBoxInput value="b" control={control} placeholder="AnswerA" />
+												<CheckBoxInput value="c" control={control} placeholder="AnswerA" />
+												<CheckBoxInput value="d" control={control} placeholder="AnswerA" />
 											</CCol>
 										</CFormGroup>
+                                    
+										<TextArea
+											name="AdditionalNotes"
+											label="Additional Notes"
+											control={control}
+											placeholder="additional notes"
+										/>
 
-										<TextArea name="AdditionalNotes" label="Additional Notes" control={control} />
-										<InputFile name="PyqQuestionImage" control={control} />
+										
+                                        <InputFile label="Question Image (optional)" name="PyqImage" register={register} />
 
-										<OnePyq control={control} />
+
+										<OnePyq control={control} register={register}/>
 										<CRow>
-											<CCol>
+											<CCol style={{ padding: '0px' }}>
 												<CButton type="submit" size="sm" color="success" className="mr-2 mb-5">
 													<CIcon name="cil-scrubber" /> Save Changes
 												</CButton>
@@ -92,6 +119,7 @@ const AddPyq = () => {
 										</CRow>
 									</CForm>
 								</CRow>
+                               
 							</CCardBody>
 						</CCollapse>
 					</CCard>

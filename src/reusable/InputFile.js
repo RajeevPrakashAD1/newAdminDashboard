@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-
+import bsCustomFileInput from 'bs-custom-file-input';
 import {
+
 	CContainer,
 	CForm,
 	CFormGroup,
@@ -20,24 +21,44 @@ import {
 	CTextarea
 } from '@coreui/react';
 
-const InputFile = ({ name,control }) => {
+
+const InputFile = ({ label,name, register }) => {
+    const [file,setfile]=useState();
+
+    useEffect(() => {
+   
+        bsCustomFileInput.init();
+      
+      return () => {
+        
+      }
+    }, [])
+
+
 	return (
 		<CFormGroup row>
-			<CCol md="3">
-				<CLabel className="">Category Image (Optional) </CLabel>
-			</CCol>
-			<CCol xs="12" md="5">
-				<Controller
-					render={({ field }) => <CInputFile {...field} custom/>}
-					name={name}
-					control={control}
-					default=" no file"
-					type="file"
-				/>
-				<CLabel htmlFor="custom-file-input" variant="custom-file">
-					Choose file...
-				</CLabel>
-				<CFormText className="help-block">Please upload images with extensions( jpg , jpeg, png)</CFormText>
+			<CLabel col md={3}>
+				{label}
+			</CLabel>
+			<CCol xs="12" md="6">
+				<div className="custom-file">
+					<input
+						id={name}
+						type="file"
+						{...register(name)}
+						onChange={(e) => {
+							const file = e.target.files[0];
+							setfile(file);
+						}}
+						className="custom-file-input"
+					/>
+					<label className="custom-file-label" htmlFor={name}>
+						Choose file
+					</label>
+				</div>
+				<CFormText style={{ marginBottom: '20px' }} className="help-block">
+					Please upload images with extensions( jpg , jpeg, png)
+				</CFormText>
 			</CCol>
 		</CFormGroup>
 	);
