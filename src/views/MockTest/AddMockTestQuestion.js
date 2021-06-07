@@ -33,6 +33,10 @@ import TextArea from './../../reusable/TextArea';
 import InputFile from './../../reusable/InputFile';
 import OneMockQuestion from './oneMockQuestion';
 
+import Notify,{Toastcontainer} from './../../reusable/notify';
+import { ToastContainer } from 'react-toastify';
+const notify = () => Notify();
+
 const AddMockTestQuestion = () => {
 	const [ collapse, setCollapse ] = useState(true);
 
@@ -110,12 +114,14 @@ const AddMockTestQuestion = () => {
 
 										<CRow>
 											<CCol style={{ padding: '0px'}}>
-												<CButton type="submit" size="sm" color="success" className="mr-2 mb-5">
+												<CButton type="submit" size="sm" onClick={notify} color="success" className="mr-2 mb-5">
 													<CIcon name="cil-scrubber" /> Save Changes
 												</CButton>
 												<CButton type="reset" size="sm" color="danger" className="mr-2 mb-5">
 													<CIcon name="cil-ban" /> Cancel
 												</CButton>
+
+                                                <Toastcontainer />
 											</CCol>
 										</CRow>
 									</CForm>

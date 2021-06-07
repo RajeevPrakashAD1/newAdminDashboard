@@ -21,11 +21,19 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import InputForm from './../../reusable/inputTaking';
+
+
 import { CIcon } from '@coreui/icons-react';
 
 import InputFile from './../../reusable/InputFile';
 import { Controller } from 'react-hook-form';
 import CheckBox  from '@material-ui/icons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import Notify,{Toastcontainer} from './../../reusable/notify';
+const notify = () => Notify();
+
 
 const AddFaculty = () => {
 	const [ collapse, setCollapse ] = useState(true);
@@ -37,7 +45,10 @@ const AddFaculty = () => {
 
 	const { register, control, handleSubmit } = useForm();
 
-	const onSubmit = (data) => console.log(data);
+    const onSubmit = data => { console.log(data);}
+    // const notify = () =>  toast.success("Submitted");
+    
+    
 
 	return (
 		<React.Fragment>
@@ -54,6 +65,7 @@ const AddFaculty = () => {
 									<CCol sm="12" className="mb-3" style={{ paddingLeft: '0' }}>
 										{' '}
 										<h2>Basic Information </h2>{' '}
+                                        
 									</CCol>
 
 									<CForm onSubmit={handleSubmit(onSubmit)}>
@@ -143,12 +155,15 @@ const AddFaculty = () => {
 											required
 											control={control}
 										/>{' '}
-										<CButton type="submit" size="sm" color="success" className="mr-2 mb-5">
+										<CButton type="submit" size="sm" color="success" onClick ={notify} className="mr-2 mb-5">
 											<CIcon name="cil-scrubber" /> Save Changes
 										</CButton>
+                                        
+
 										<CButton type="reset" size="sm" color="danger" className="mr-2 mb-5">
 											<CIcon name="cil-ban" /> Cancel
 										</CButton>
+                                        <Toastcontainer />
 									</CForm>
 								</CRow>
 							</CCardBody>

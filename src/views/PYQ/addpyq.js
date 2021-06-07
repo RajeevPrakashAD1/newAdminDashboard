@@ -22,7 +22,7 @@ import { useForm, Controller } from 'react-hook-form';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import React, { useEffect, useState } from 'react';
-import bsCustomFileInput from 'bs-custom-file-input'
+import bsCustomFileInput from 'bs-custom-file-input';
 
 import InputForm from './../../reusable/inputTaking';
 import CIcon from '@coreui/icons-react';
@@ -32,6 +32,8 @@ import SelectMultiple from './../../reusable/SelectMultiple';
 import TextArea from './../../reusable/TextArea';
 import InputFile from './../../reusable/InputFile';
 import OnePyq from './onePyq';
+import Notify, { Toastcontainer } from './../../reusable/notify';
+const notify = () => Notify();
 
 const AddPyq = () => {
 	const [ collapse, setCollapse ] = useState(true);
@@ -46,16 +48,13 @@ const AddPyq = () => {
 		console.log(data);
 	};
 
-    const [file,setfile]=useState();
+	const [ file, setfile ] = useState();
 
-    useEffect(() => {
-   
-        bsCustomFileInput.init();
-      
-      return () => {
-        
-      }
-    }, [])
+	useEffect(() => {
+		bsCustomFileInput.init();
+
+		return () => {};
+	}, []);
 
 	return (
 		<React.Fragment>
@@ -75,7 +74,7 @@ const AddPyq = () => {
 										<CCol sm="12" className="mb-3" style={{ paddingLeft: '0px' }}>
 											<h2> Question 1 </h2>
 										</CCol>
-                                    
+
 										<TextArea
 											name="QuestionTitle"
 											label="Question Title"
@@ -94,7 +93,7 @@ const AddPyq = () => {
 												<CheckBoxInput value="d" control={control} placeholder="AnswerA" />
 											</CCol>
 										</CFormGroup>
-                                    
+
 										<TextArea
 											name="AdditionalNotes"
 											label="Additional Notes"
@@ -102,24 +101,32 @@ const AddPyq = () => {
 											placeholder="additional notes"
 										/>
 
-										
-                                        <InputFile label="Question Image (optional)" name="PyqImage" register={register} />
+										<InputFile
+											label="Question Image (optional)"
+											name="PyqImage"
+											register={register}
+										/>
 
-
-										<OnePyq control={control} register={register}/>
+										<OnePyq control={control} register={register} />
 										<CRow>
 											<CCol style={{ padding: '0px' }}>
-												<CButton type="submit" size="sm" color="success" className="mr-2 mb-5">
+												<CButton
+													type="submit"
+													size="sm"
+													onClick={notify}
+													color="success"
+													className="mr-2 mb-5"
+												>
 													<CIcon name="cil-scrubber" /> Save Changes
 												</CButton>
 												<CButton type="reset" size="sm" color="danger" className="mr-2 mb-5">
 													<CIcon name="cil-ban" /> Cancel
 												</CButton>
+												<Toastcontainer />
 											</CCol>
 										</CRow>
 									</CForm>
 								</CRow>
-                               
 							</CCardBody>
 						</CCollapse>
 					</CCard>
