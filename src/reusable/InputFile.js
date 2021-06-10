@@ -22,7 +22,7 @@ import {
 } from '@coreui/react';
 
 
-const InputFile = ({ label,name, register }) => {
+const InputFile = ({ label,name, register,defalutFileValue }) => {
     const [file,setfile]=useState();
 
     useEffect(() => {
@@ -51,6 +51,7 @@ const InputFile = ({ label,name, register }) => {
 							setfile(file);
 						}}
 						className="custom-file-input"
+                        value = {defalutFileValue}
 					/>
 					<label className="custom-file-label" htmlFor={name}>
 						Choose file

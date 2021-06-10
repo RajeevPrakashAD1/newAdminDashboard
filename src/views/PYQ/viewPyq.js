@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from "react-router-dom"
 
 import {
 	CCard,
@@ -14,78 +15,34 @@ import {
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
+import { InsertEmoticonSharp } from '@material-ui/icons';
 
 
 export default function ViewPyqList() {
-	const [ faculties ] = useState([
+	const [ pyq ] = useState([
 		{
-			_id: '1',
+			'id': '1',
 			name: 'phreya jha',
-			image: ' ',
-			basiInfo: 'basicInfo',
-			socialMedia: 'socialMedia',
+            category:"category",
+			image: 'image ',
+			question: 'what is ur name',
+            answer:["option 1","option 2" , "option 3" , "option 4"],
+			correctAnswer:"option 2",
 			action: 'action'
 		},
 
-		{
-			_id: '1',
-			name: 'threya jha',
-			image: 'image',
-			basiInfo: 'basicInfo',
-			socialMedia: 'socialMedia',
-			action: 'action'
-		},
-
-		{
-			_id: '1',
-			name: 'threya jha',
-			image: 'image',
-			basiInfo: 'basicInfo',
-			socialMedia: 'socialMedia',
-			action: 'action'
-		},
-		{
-			_id: '1',
-			name: 'threya jha',
-			image: 'image',
-			basiInfo: 'basicInfo',
-			socialMedia: 'socialMedia',
-			action: 'action'
-		},
-		{
-			_id: '1',
-			name: 'threya jha',
-			image: 'image',
-			basiInfo: 'basicInfo',
-			socialMedia: 'socialMedia',
-			action: 'action'
-		},
-		{
-			_id: '1',
-			name: 'threya jha',
-			image: 'image',
-			basiInfo: 'basicInfo',
-			socialMedia: 'socialMedia',
-			action: 'action'
-		},
-		{
-			_id: '1',
-			name: 'threya jha',
-			image: 'image',
-			basiInfo: 'basicInfo',
-			socialMedia: 'socialMedia',
-			action: 'action'
-		}
+		
 	]);
 
 	const fields = [
-		{ key: 's.no' },
+		{ key: 'id' },
 		{ key: 'category', _style: { width: '10%' } },
 
 		{ key: 'question', filter: false, sorter: false, _style: { width: '20%' } },
 		{ key: 'answer', _style: { width: '30%' } },
-		{ key: 'correct answer', filter: false, sorter: false, _style: { width: '30%' } },
-		{ key: 'image', filter: false, sorter: false }
+		{ key: 'correctAnswer', filter: false, sorter: false, _style: { width: '30%' } },
+		{ key: 'image', filter: false, sorter: false },
+		{ key: 'action', filter: false, sorter: false }
 	];
 
 	const cardStyle = {
@@ -102,7 +59,7 @@ export default function ViewPyqList() {
 				<CCardBody>
 					<CDataTable
 						striped
-						items={faculties}
+						items={pyq}
 						fields={fields}
 						tableFilter
 						itemsPerPageSelect
@@ -112,6 +69,29 @@ export default function ViewPyqList() {
 						border
 						outlined
 						pagination
+                        scopedSlots={{
+							action: (item) => (
+								<CContainer>
+									<CButton>
+										{' '}
+										<DeleteIcon color="error" />
+									</CButton>
+                                    <Link to= {`/pyq/edit-pyq-question/${item.id}`}>
+									<CButton onClick={()=>console.log(item)}>
+									
+										<CreateIcon color="primary" />{' '}
+									</CButton> 
+                                    </Link>
+									<CButton color="success"> Active</CButton>
+								</CContainer>
+							),
+
+                            answer:(item) =>(
+                                <CContainer>
+                                    {item.answer.map( (e,index) => <p>{`option${index+1} :  ${e} `} </p>  )}
+                                </CContainer>
+                            )
+                        }}
 					/>
 				</CCardBody>
 			</CCard>

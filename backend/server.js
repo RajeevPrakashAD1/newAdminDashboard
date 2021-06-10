@@ -1,0 +1,21 @@
+const express = require("express");
+const app = express();
+require("dotenv").config();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+let port = process.env.PORT || 7000;
+const testimonial = require("./api/testimonial.js");
+const faculty = require("./api/faculty.js");
+const enquiry = require("./api/enquiry.js");
+const suggestion = require("./api/suggestion.js");
+const mock_test = require("./api/mock_test.js");
+const user= require("./api/user.js");
+app.use("/testimonials", testimonial);
+app.use("/faculty", faculty);
+app.use("/suggestion", suggestion);
+app.use("/enquiry", enquiry);
+app.use("/mock_test", mock_test);
+app.use("/user", user);
+app.listen(port, () => {
+  console.log("listning....", port);
+});

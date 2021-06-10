@@ -141,11 +141,11 @@ function ViewFaculty() {
 								<CContainer>
 									<CButton>
 										{' '}
-										<DeleteIcon color="danger" />
+										<DeleteIcon color="error" />
 									</CButton>
 									<CButton>
 										{' '}
-										<CreateIcon color="green" />{' '}
+										<CreateIcon color="primary" />{' '}
 									</CButton>
 									<CButton color="success"> Active</CButton>
 								</CContainer>
